@@ -1,0 +1,39 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{845060F1-DDA2-2A8C-FB7B-0B5EA08DE74E}") = "Walker Boys Game 01 Point and Click", "Assembly-UnityScript.unityproj", "{A224C0DD-5174-C135-0223-FB330E0CC653}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A224C0DD-5174-C135-0223-FB330E0CC653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A224C0DD-5174-C135-0223-FB330E0CC653}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A224C0DD-5174-C135-0223-FB330E0CC653}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A224C0DD-5174-C135-0223-FB330E0CC653}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+			GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = null
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+		$0.TextStylePolicy = $3
+		$3.FileWidth = 120
+		$3.TabWidth = 4
+		$3.EolMarker = Unix
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/plain
+		$3.scope = text/plain
+	EndGlobalSection
+
+EndGlobal
