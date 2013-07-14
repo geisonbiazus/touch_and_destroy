@@ -10,7 +10,8 @@ var explosion 		: Transform;		// explosion game object
 var enemyPoint 		: int 		= 1;	// points earned by destroying the enemy
 
 // Private variables
-private var storeClicks : int = 0;
+private var storeClicks : int 		= 0;
+private var destroyed	: boolean	= false;
 
 function Start() {
 	storeClicks = numberOfClicks;
@@ -18,7 +19,7 @@ function Start() {
 }
 
 function Update () {
-	if (numberOfClicks <= 0) {
+	if (isDestroyed()) {
 		
 		if (explosion) {
 			Instantiate(explosion, transform.position, transform.rotation); // create explosion
@@ -29,7 +30,8 @@ function Update () {
 		}
 		
 		RamdomPosition(); // move the object to a random position		
-		numberOfClicks = storeClicks;;
+		numberOfClicks = storeClicks;
+		destroyed = false;
 	}
 }
 
@@ -53,7 +55,7 @@ function RamdomPosition() {
 
 // Hide the game object for a set amount of time and then unhide
 function RespawnWaitTime() {
-	renderer.enabled = false;
+	renderer.enabled = false;	
 	RandomColor();
 	yield WaitForSeconds(respawnWaitTime);
 	renderer.enabled = true;
@@ -65,4 +67,16 @@ function RandomColor() {
 		var newColor = Random.Range(0, shapeColor.length);
 		renderer.material.color = shapeColor[newColor];
 	}
+}
+
+function Click() {
+	numberOfClicks--;
+	RandomColor();
+	if (numberOfClicks == 0) {
+		destroyed = true;
+	}
+}
+
+function isDestroyed() {
+	return destroyed;
 }

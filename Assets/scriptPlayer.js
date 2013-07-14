@@ -25,10 +25,10 @@ function Update () {
 			
 			if (hit.transform.tag == tagName) {
 				var enemyScript = hit.transform.GetComponent(scriptEnemy);
-				enemyScript.numberOfClicks -= 1;
+				enemyScript.Click();
 				
 				// if the object has been destroyed
-				if (enemyScript.numberOfClicks == 0) {
+				if (enemyScript.isDestroyed()) {
 					score += enemyScript.enemyPoint; // add points to  our overall score
 				}
 			} else {
