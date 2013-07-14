@@ -18,7 +18,6 @@ function Start() {
 }
 
 function Update () {
-	
 	if (numberOfClicks <= 0) {
 		
 		if (explosion) {
@@ -35,7 +34,19 @@ function Update () {
 }
 
 function RamdomPosition() {
-	var position = Vector3(Random.Range(-6, 6), Random.Range(-4, 4), 0); // new random position for the game object
+
+	// get the vertical orthografic camera size
+	var verticalSize   = Camera.main.orthographicSize; 
+	// calculate the horizontal camera size based on screen size in pixels
+	var horizontalSize = verticalSize * Screen.width / Screen.height;
+	
+	// decrement sizes, so the game objects will not apear outside the camera view
+	verticalSize--;
+	horizontalSize--;
+	
+	// as the orthographic size returns the half of the real orhtografic size,
+	// the position can be randomized using the obtained values
+	var position = Vector3(Random.Range(-horizontalSize, horizontalSize), Random.Range(-verticalSize, verticalSize), 0); // new random position for the game object
 	RespawnWaitTime();
 	transform.position = position; // move the game object to the new location
 }
