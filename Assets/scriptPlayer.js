@@ -28,7 +28,7 @@ function Update () {
 				enemyScript.Click();
 				
 				// if the object has been destroyed
-				if (enemyScript.isDestroyed()) {
+				if (enemyScript.IsDestroyed()) {
 					score += enemyScript.enemyPoint; // add points to  our overall score
 				}
 			} else {
