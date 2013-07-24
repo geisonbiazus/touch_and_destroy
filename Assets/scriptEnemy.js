@@ -10,9 +10,10 @@ var explosion 		: Transform;		// explosion game object
 var enemyPoint 		: int 		= 1;	// points earned by destroying the enemy
 
 // Private variables
-private var storeClicks	= 0;
-private var destroyed	= false;
-private var shapeColor	= [Color.green, Color.blue, Color.yellow, Color.red, Color.black];
+private var storeClicks				= 0;
+private var destroyed				= false;
+private var shapeColor				= [Color.green, Color.blue, Color.yellow, Color.red, Color.gray];
+private var destructiveShapeColor	= Color.black;
 
 function Start() {
 	storeClicks = numberOfClicks;
@@ -61,7 +62,11 @@ function Spawn() {
 // Color to change out the material of the game object
 function UpdateColor() {
 	if (numberOfClicks > 0) {
-		renderer.material.color = shapeColor[numberOfClicks - 1];
+		if (IsDestructive()) {
+			renderer.material.color = destructiveShapeColor;
+		} else{
+			renderer.material.color = shapeColor[numberOfClicks - 1];
+		}
 	}
 }
 
@@ -96,4 +101,8 @@ function Click() {
 
 function IsDestroyed() {
 	return destroyed;
+}
+
+function IsDestructive() {
+	return enemyPoint < 0;
 }

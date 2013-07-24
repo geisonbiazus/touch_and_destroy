@@ -15,7 +15,7 @@ function Start() {
 }
 
 function Update () {
-	// use the mouse button to select on game ovjects on the scene
+	// use the mouse button to select on game ovjects on the scene		
 	if (Input.GetMouseButtonDown(0)) {
 		
 		var hit : RaycastHit;
@@ -30,6 +30,14 @@ function Update () {
 				// if the object has been destroyed
 				if (enemyScript.IsDestroyed()) {
 					score += enemyScript.enemyPoint; // add points to  our overall score
+					
+					if (enemyScript.IsDestructive()) {
+						ShakeScreen();
+						
+						if (score < 0) {
+							score = 0;
+						}
+					}
 				}
 			} else {
 				print("This is not an enemy");
@@ -55,4 +63,10 @@ function OnGUI() {
 	
 	GUI.Label(Rect(10, 10, 100, 20), "Score: " + score);
 	GUI.Label(Rect(10, 25, 100, 35), "Time: " + gameTime);
+}
+
+function ShakeScreen() {
+	Camera.main.animation.Play();
+	yield WaitForSeconds(1);
+	Camera.main.animation.Stop();
 }
