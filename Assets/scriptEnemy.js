@@ -72,10 +72,9 @@ function UpdateColor() {
 
 function RamdomPosition() {
 
-	// get the vertical orthografic camera size
-	var verticalSize   = Camera.main.orthographicSize; 
-	// calculate the horizontal camera size based on screen size in pixels
-	var horizontalSize = verticalSize * Screen.width / Screen.height;
+	// get the vertical and horizontal orthografic camera size
+	var verticalSize   = scriptUtils.ScreenVerticalSize(); 	
+	var horizontalSize = scriptUtils.ScreenHorizontalSize();
 	
 	// decrement sizes, so the game objects will not apear outside the camera view
 	verticalSize--;
