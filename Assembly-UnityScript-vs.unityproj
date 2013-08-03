@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\scriptEnemy.js" />
+     <Compile Include="Assets\scriptLevelController.js" />
      <Compile Include="Assets\scriptPlayer.js" />
      <Compile Include="Assets\scriptScreenLevelSelect.js" />
      <Compile Include="Assets\scriptScreenLose.js" />

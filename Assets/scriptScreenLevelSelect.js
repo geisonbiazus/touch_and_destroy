@@ -1,7 +1,5 @@
 ﻿#pragma strict
 
-var levelScenes 			: String[];
-var levelNames 				: String[];
 var buttonSize				: float 	= 120;
 var buttonDistance 			: float 	= 20;
 var minButtonXStartPosition : float		= 80;
@@ -18,24 +16,39 @@ private var numberOfPages			: int;
 private var currentPage				: int 	= 1;
 private var controlButtonWidth		: float	= 80;
 private var controlButtonHeight		: float	= 30;
+private var levelController			: scriptLevelController;
 
-function OnGUI() {	
-		
-	CalculateDefaultValues();		
+function OnGUI() {		
+	CalculateDefaultValues();
 
-	var levelScene : String;
-	var levelName : String;
+	var levelScene 				: String;
+	var levelName 				: String;
+	var levelScore				: int;
+	var levelCompleted			: String;
+	var lastEnabledLevelIndex 	: int = 0;
 		
 	for (var i = CurrentPageFirstLevelIndex(); i <= CurrentPageLastLevelIndex(); i++) {
-		levelScene = levelScenes[i];
-		levelName = levelNames[i];
+		levelScene = levelController.levelScenes[i];
+		levelName = levelController.levelNames[i];
+		levelScore = PlayerPrefs.GetInt(levelScene + ":HighScore", 0);
+		levelCompleted = PlayerPrefs.GetString(levelScene + ":Completed", "");
+		
+		if (levelCompleted == "true") {
+			lastEnabledLevelIndex++;
+		}
+		
+		if (i > lastEnabledLevelIndex) {
+			GUI.enabled = false;
+		}
 			
-		if (GUI.Button(Rect(buttonX, buttonY, buttonSize, buttonSize), levelName)) {
-			Application.LoadLevel(levelScene);
+		if (GUI.Button(Rect(buttonX, buttonY, buttonSize, buttonSize), levelName + "\nScore: " + levelScore)) {
+			scriptUtils.LevelController().LoadLevel(levelScene);			
 		}			
 		
 		CalculateNextButtonPosition();
 	}
+	
+	GUI.enabled = true;
 	
 	var prevButtonX = (Screen.width / 2.0) - controlButtonWidth - 5;
 	var prevButtonY = Screen.height - 60;
@@ -63,9 +76,10 @@ function CalculateDefaultValues() {
 	levelsPerRow = CalculateAmountOfButtons(Screen.width, minButtonXStartPosition);
 	levelsPerCol = CalculateAmountOfButtons(Screen.height, minButtonYStartPosition);
 	levelsPerPage = levelsPerRow * levelsPerCol;
-	numberOfPages = Mathf.Ceil((levelScenes.Length + 0.0) / levelsPerPage);
+	levelController = scriptUtils.LevelController();
+	numberOfPages = Mathf.Ceil((levelController.levelScenes.Length + 0.0) / levelsPerPage);
 	buttonX = buttonXStartPosition;
-	buttonY = buttonYStartPosition;
+	buttonY = buttonYStartPosition;	
 }
 
 function CalculateStartPosition(size : float, minStartPosition : float) {	
@@ -89,8 +103,8 @@ function CurrentPageFirstLevelIndex() {
 function CurrentPageLastLevelIndex() {
 	var lastLevel = currentPage * levelsPerPage;
 	
-	if (lastLevel > levelScenes.length) {
-		lastLevel = levelScenes.length;
+	if (lastLevel > levelController.levelScenes.length) {
+		lastLevel = levelController.levelScenes.length;
 	}
 	
 	return lastLevel - 1;

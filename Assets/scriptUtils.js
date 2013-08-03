@@ -9,3 +9,8 @@ static function ScreenVerticalSize() {
 static function ScreenHorizontalSize() {
 	return ScreenVerticalSize() * Screen.width / Screen.height;
 }
+
+static function LevelController() {
+	var levelController : GameObject = GameObject.Find("Level Controller");
+	return levelController.GetComponent(scriptLevelController);
+}

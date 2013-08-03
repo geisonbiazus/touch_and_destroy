@@ -1,13 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scriptScreenLevelSelect.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scriptScreenWin.js">
     <Files>
-      <File FileName="Assets\scriptScreenLevelSelect.js" Line="16" Column="22" />
-      <File FileName="Assets\scriptEnemy.js" Line="75" Column="2" />
-      <File FileName="Assets\scriptUtils.js" Line="9" Column="25" />
-      <File FileName="Assets\scriptScreenMainMenu.js" Line="9" Column="2" />
-      <File FileName="Assets\scriptScreenLose.js" Line="8" Column="48" />
-      <File FileName="Assets\scriptScreenWin.js" Line="8" Column="48" />
+      <File FileName="Assets\scriptPlayer.js" Line="34" Column="14" />
+      <File FileName="Assets\scriptScreenLevelSelect.js" Line="47" Column="3" />
+      <File FileName="Assets\scriptEnemy.js" Line="1" Column="1" />
+      <File FileName="Assets\scriptLevelController.js" Line="13" Column="2" />
+      <File FileName="Assets\scriptUtils.js" Line="13" Column="32" />
+      <File FileName="Assets\scriptScreenWin.js" Line="10" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

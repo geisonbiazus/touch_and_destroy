@@ -10,7 +10,14 @@ var gameTime			: float		= 20.0;		// the a mount of time the game will last
 var loadWaitTime		: float		= 3.0; 		// amout of time before we loead the next scene
 var numberOfPointsToWin	: int		= 20;		// number of points to win game
 
+// Private Variables
+private var sceneName 	: String;
+private var highScore 	: int;
+
 function Start() {
+	sceneName = Application.loadedLevelName;
+	highScore = PlayerPrefs.GetInt(sceneName + ":HighScore", 0);
+
 	InvokeRepeating("CountDown", 1.0, 1.0); // Repeat the countdown every second
 }
 
@@ -51,18 +58,25 @@ function CountDown() {
 	if (--gameTime == 0) { 
 		CancelInvoke("CountDown"); // cancel the countdown
 		
-		if (score >= numberOfPointsToWin) {
+		if (score > highScore) {
+			PlayerPrefs.SetInt(sceneName + ":HighScore", score);
+		}
+		
+		if (score >= numberOfPointsToWin) {		
+			PlayerPrefs.SetString(sceneName + ":Completed", "true");			
 			Application.LoadLevel("sceneScreenWin");
 		} else {
 			Application.LoadLevel("sceneScreenLose");
 		}
+				
+		PlayerPrefs.Save();
 	}	
 }
 
-function OnGUI() {
-	
-	GUI.Label(Rect(10, 10, 100, 20), "Score: " + score);
-	GUI.Label(Rect(10, 25, 100, 35), "Time: " + gameTime);
+function OnGUI() {	
+	GUI.Label(Rect(10, 10, 100, 20), "High Score: " + highScore);
+	GUI.Label(Rect(10, 25, 100, 35), "Score: " + score);
+	GUI.Label(Rect(10, 40, 100, 50), "Time: " + gameTime);
 }
 
 function ShakeScreen() {
