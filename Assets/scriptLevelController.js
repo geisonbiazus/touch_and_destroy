@@ -4,6 +4,7 @@ var levelScenes			: String[];
 var levelNames 			: String[];
 var currentLevelName	: String;
 var currentLevelIndex	: int = 0;
+var currentLevelScore	: int = 0;
 
 function Awake() {
 	DontDestroyOnLoad(this);	

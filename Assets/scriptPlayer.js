@@ -11,10 +11,12 @@ var loadWaitTime		: float		= 3.0; 		// amout of time before we loead the next sc
 var numberOfPointsToWin	: int		= 20;		// number of points to win game
 
 // Private Variables
-private var sceneName 	: String;
-private var highScore 	: int;
+private var sceneName 		: String;
+private var highScore 		: int;
+private var levelController : scriptLevelController;
 
 function Start() {
+	levelController = scriptUtils.LevelController();
 	sceneName = Application.loadedLevelName;
 	highScore = PlayerPrefs.GetInt(sceneName + ":HighScore", 0);
 
@@ -57,6 +59,8 @@ function CountDown() {
 	// subtract from gametime and checks if the time goes to zero
 	if (--gameTime == 0) { 
 		CancelInvoke("CountDown"); // cancel the countdown
+		
+		levelController.currentLevelScore = score;
 		
 		if (score > highScore) {
 			PlayerPrefs.SetInt(sceneName + ":HighScore", score);
