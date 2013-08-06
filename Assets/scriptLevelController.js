@@ -22,3 +22,15 @@ function LoadLevel(levelName : String) {
 	
 	Application.LoadLevel(currentLevelName);
 }
+
+function ReloadCurrentLevel() {
+	LoadLevel(currentLevelName);
+}
+
+function LoadNextLevel() {
+	LoadLevel(levelScenes[currentLevelIndex + 1]);
+}
+
+function HasNextLevel() {
+	return currentLevelIndex < (levelScenes.Length - 1);
+}
