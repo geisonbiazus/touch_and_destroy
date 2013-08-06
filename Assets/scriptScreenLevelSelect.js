@@ -20,27 +20,24 @@ private var levelController			: scriptLevelController;
 
 function OnGUI() {		
 	CalculateDefaultValues();
+	
+	if (GUI.Button(Rect((Screen.width - 90) / 2, 10, 90, 40), "Main Menu")) {
+		Application.LoadLevel("sceneScreenMainMenu");
+	}
 
 	var levelScene 				: String;
 	var levelName 				: String;
 	var levelScore				: int;
 	var levelCompleted			: String;
-	var lastEnabledLevelIndex 	: int = 0;
+	
 		
 	for (var i = CurrentPageFirstLevelIndex(); i <= CurrentPageLastLevelIndex(); i++) {
 		levelScene = levelController.levelScenes[i];
 		levelName = levelController.levelNames[i];
 		levelScore = PlayerPrefs.GetInt(levelScene + ":HighScore", 0);
-		levelCompleted = PlayerPrefs.GetString(levelScene + ":Completed", "");
 		
-		if (levelCompleted == "true") {
-			lastEnabledLevelIndex++;
-		}
-		
-		if (i > lastEnabledLevelIndex) {
-			GUI.enabled = false;
-		}
-			
+		GUI.enabled = LevelEnabled(i);
+					
 		if (GUI.Button(Rect(buttonX, buttonY, buttonSize, buttonSize), levelName + "\nScore: " + levelScore)) {
 			scriptUtils.LevelController().LoadLevel(levelScene);			
 		}			
@@ -48,24 +45,29 @@ function OnGUI() {
 		CalculateNextButtonPosition();
 	}
 	
-	GUI.enabled = true;
-	
 	var prevButtonX = (Screen.width / 2.0) - controlButtonWidth - 5;
 	var prevButtonY = Screen.height - 60;
 	var nextButtonX = (Screen.width / 2.0) + 5;
 	var nextButtonY = Screen.height - 60;
 	
+	GUI.enabled = false;
+	
+	if (HasPreviousPage()) {
+		GUI.enabled = true;
+	}
 	
 	if (GUI.Button(Rect(prevButtonX, prevButtonY, controlButtonWidth, controlButtonHeight), "Previous")) {		
-		if (currentPage > 1) {
-			currentPage--;
-		}
+		currentPage--;		
+	}
+	
+	GUI.enabled = false;
+	
+	if (HasNextPage()) {
+		GUI.enabled = true;
 	}
 	
 	if (GUI.Button(Rect(nextButtonX, nextButtonY, controlButtonWidth, controlButtonHeight), "Next")) {		
-		if (currentPage < numberOfPages) {
-			currentPage++;
-		}
+		currentPage++;		
 	}
 	
 }
@@ -119,3 +121,18 @@ function CalculateNextButtonPosition() {
 	}
 }
 
+function HasPreviousPage() {
+	return currentPage > 1;
+}
+
+function HasNextPage() {
+	return currentPage < numberOfPages;	
+}
+
+function LevelEnabled(index : int) {
+	return index == 0 || LevelCompleted(levelController.levelScenes[index]) || LevelCompleted(levelController.levelScenes[index - 1]);
+}
+
+function LevelCompleted(levelScene) {
+	return PlayerPrefs.GetString(levelScene + ":Completed", "") == "true";
+}

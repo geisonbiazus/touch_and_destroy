@@ -3,11 +3,11 @@
 // var buttonSize : float = 50;
 
 function OnGUI() {
-	if (GUI.Button(Rect(10, 10, 90, 50), "Start Game")) {
+	if (GUI.Button(Rect((Screen.width - 150) / 2, (Screen.height / 2) - 80, 150, 70), "Start Game")) {
 		Application.LoadLevel("sceneScreenLevelSelect");
 	}
 	
-	if (GUI.Button(Rect(10, 70, 90, 50), "Exit Game")) {
+	if (GUI.Button(Rect((Screen.width - 150) / 2, (Screen.height / 2) + 10, 150, 70), "Exit Game")) {
 		Application.Quit();
 	}
 }
