@@ -7,16 +7,17 @@ function Awake() {
 }
 
 function OnGUI() {
+	GUI.skin.label.alignment = TextAnchor.MiddleCenter;
 
-	GUI.Label(Rect(10, 10, 100, 20), "YOU LOSE!!");
-	GUI.Label(Rect(10, 30, 100, 20), "Score: " + levelController.currentLevelScore);
+	GUI.Label(Rect((Screen.width - 100) / 2, (Screen.height / 2) - 140, 100, 20), "YOU LOSE!!");
+	GUI.Label(Rect((Screen.width - 100) / 2, (Screen.height / 2) - 120, 100, 20), "Score: " + levelController.currentLevelScore);
 	
-	if (GUI.Button(Rect(10, 60, 100, 50), "Restart Level")) {
+	if (GUI.Button(Rect((Screen.width - 150) / 2, (Screen.height / 2) - 80, 150, 70), "Restart Level")) {
 		Application.LoadLevel("sceneScreenLevelSelect");
 		levelController.ReloadCurrentLevel();
 	}
 	
-	if (GUI.Button(Rect(10, 130, 100, 50), "Main Menu")) {
+	if (GUI.Button(Rect((Screen.width - 150) / 2, (Screen.height / 2) + 10, 150, 70), "Main Menu")) {
 		Application.LoadLevel("sceneScreenMainMenu");
 	}
 }
