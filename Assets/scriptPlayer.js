@@ -7,7 +7,6 @@ var tagName				: String	= "enemy";	// allow designer to setup a tag in the inspe
 var rayDistance			: float 	= 0; 		// length of the ray for aur raycast
 var score 				: int 		= 0; 		// score for our player
 var gameTime			: float		= 20.0;		// the a mount of time the game will last
-var loadWaitTime		: float		= 3.0; 		// amout of time before we loead the next scene
 var numberOfPointsToWin	: int		= 20;		// number of points to win game
 
 // Private Variables
