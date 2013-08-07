@@ -78,8 +78,9 @@ function CountDown() {
 
 function OnGUI() {	
 	GUI.Label(Rect(10, 10, 100, 20), "High Score: " + highScore);
-	GUI.Label(Rect(10, 25, 100, 35), "Score: " + score);
-	GUI.Label(Rect(10, 40, 100, 50), "Time: " + gameTime);
+	GUI.Label(Rect(10, 25, 100, 20), "Time: " + gameTime);
+	GUI.Label(Rect(10, 40, 100, 20), "Objective: " + numberOfPointsToWin);	
+	GUI.Label(Rect(10, 55, 100, 20), "Score: " + score);
 }
 
 function ShakeScreen() {
