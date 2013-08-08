@@ -9,7 +9,7 @@ function OnGUI() {
 	GUI.skin.label.alignment = TextAnchor.MiddleCenter;
 	GUI.skin.label.fontSize = 40;
 	
-	GUI.Label(Rect((Screen.width - 300) / 2, (Screen.height / 2) - 160, 300, 70), "CLICKER" );
+	GUI.Label(Rect((Screen.width - 400) / 2, (Screen.height / 2) - 160, 400, 70), "Touch and Destroy" );
 	
 	GUI.skin.label.alignment = TextAnchor.MiddleLeft;
 	GUI.skin.label.fontSize = 12;
